@@ -1,0 +1,311 @@
+::-webkit-scrollbar {
+  width: 17px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #aaaaaa;
+  border-radius: 10px;
+}
+
+
+body {
+  background-image: url('../image/system/texture-1027739_640.jpg');
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.main { 
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  top: 45px;
+  left: 0;
+  height: auto;
+}
+
+.main-wrapper {
+  display: block;
+  position: relative;
+  margin: 10% auto 0 auto;
+  top: 0;
+  left: 0;
+  /* border: solid 3px burlywood; */
+  border-radius: 10px;
+  box-shadow: 0 0 0 3px #000, 0 0 0 6px burlywood, 0 0 0 9px #000;
+}
+
+
+.content-slideWrapper {
+  position: fixed;
+  top:45px;
+  right: 0;
+  height: calc(100vh - 45px);
+  z-index: 9998;
+  flex-direction: row;
+  width: 1.75rem;
+  transition: all 0.6s;
+}
+
+.content-slideWrapper.show {
+  width: calc(217px + 1.75rem);
+}
+
+
+.content-changer {
+  display: flex;
+  position:absolute;
+  background-color: #f0f0f0;
+  top:0;
+  left: 1.75rem;
+  width: 217px;
+  height: 1.5rem;
+}
+
+.label-wrapper {
+  display: flex;
+  overflow: hidden;/* 隠しているだけでスクロールは element.scrollLeft でできるっぽい */
+  flex-direction:row;
+  height: 1.5rem;
+}
+
+.label-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.label-wrapper div {
+  display: block;
+  box-sizing: border-box;
+  text-align: center;
+  height: 100%;
+  flex: 0 0 50%;
+  white-space: nowrap;
+  border: solid 1px #000;
+}
+
+.label-wrapper div:hover{
+  cursor: pointer;
+}
+
+.content-wrapper {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.75rem;
+  width: 217px;
+  height: calc(100vh - (1.5rem + 45px) );
+}
+
+.content-changer-left:hover {
+  cursor: pointer;
+}
+
+.content-changer-right:hover{
+  cursor: pointer;
+}
+
+
+.slideButton {
+  top: 0;
+  left: 0;
+  width: 1.75rem;
+  height: 1.5rem;
+  background-color: white;
+  text-align: center;
+}
+
+.slideButton:hover {
+  cursor: pointer;
+}
+
+.option {
+  display: flex;
+  position: relative;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  height: 100%;
+  /*height: 2rem;*/
+  width: 500;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+/* メイン */
+#img1,
+#img2 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events:none ;
+  padding: 0;
+  margin: 0;
+}
+
+#colorPicker {
+  visibility:visible;/* 表示させてないと ios safari では content.js から click イベントが発火しないっぽい */
+  position: absolute;
+  z-index: -1;
+  width:1px;
+  height: 1px;
+  left: 0;
+  top: 0;
+  padding: 0;
+  margin: 0;
+}
+
+#uiToggleButton {
+  position:absolute;
+  width:60px; 
+  height:32px;
+  left:30px;
+  bottom:30px;
+  background-image: url('../image/system/frame-89488_640.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: white;
+  text-align:center;
+  line-height: 32px;
+  cursor: pointer;
+}
+
+
+/* オプション */
+.option .tooltip-wrapper { /* system.css tooltip-wrapperの上書き */
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+  height: 2rem;
+  line-height: 2rem;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+
+.option .tooltip-wrapper:hover .tooltip {
+  display: inline;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: fit-content;
+  background-color: #f0f0f0;
+  border: #333;
+}
+
+
+
+.option span {
+  display: inline-block;
+  line-height: 2rem;
+}
+
+
+.mode {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.mode div {
+  box-sizing: border-box;
+  width: 1.75rem;
+  height: 1.5rem;
+  margin: 0.875rem;
+  border: solid 1px #000;
+}
+
+.color {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.color div {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 1.75rem;
+  height: 1.5rem;
+  margin: 0.875rem;
+  border: solid 1px #000;
+}
+
+.bold {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.bold div {
+  box-sizing: border-box;
+  width: 1.75rem;
+  height: 1.5rem;
+  margin: 0.875rem;
+  border: solid 1px #000;
+  line-height: 1.5rem;
+}
+
+.brush {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.sand {
+  background-color: rgba(255, 215, 180, 1);
+}
+
+.sand2 {
+  background-color: rgba(255, 240, 190, 1);
+}
+
+.blue {
+  background-color: #0000ff;
+}
+
+.transparent {
+  background-color: transparent;
+}
+
+
+.brush div {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 1.75rem;
+  height: 1.5rem;
+  margin: 0.875rem;
+  border: solid 1px #000;
+}
+
+
+.clear {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.clear div {
+  width: 1.75rem;
+  height: 1.5rem;
+  margin: 0.875rem;
+  border: solid 1px #000;
+}
+
+
+/* コンテンツ */
+.contents {
+  position: relative;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+}
+

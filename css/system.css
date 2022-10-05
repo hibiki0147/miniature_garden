@@ -1,0 +1,200 @@
+/* 全体 */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 45px;
+  z-index: 9999;
+  background-color: #fff;
+}
+
+
+/* ナビゲーション */
+.nav_header {
+  visibility: visible;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.nav_header ul {
+  display: flex;/* flexbox使う */
+  text-align: center;/* テキストを横センターに */
+  line-height: 45px;/* テキストを縦センターに */
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;/* 左右余白入りで中央揃い横並び */
+  list-style: none;
+}
+
+.nav_header ul li {
+  width: 100%;/* a タグのため、引き延ばし */
+  height: 100%;
+}
+
+.nav_header ul li:hover {
+  background-color: rgba(200,200,255, 0.5);
+}
+
+.nav_header ul li a { 
+  display: block;
+  height: 100%;
+  text-decoration: none;/* 下線なし */
+}
+
+
+/* ハンバーガーメニュー */
+.nav_toggle {
+  display: none;
+  visibility: hidden;
+  /*position: fixed;*/
+  width: 1.75rem;
+  height: 1.5rem;
+  top: 5%;
+  left: 5%;
+  margin: 0 0 0 30px;
+  margin: 0;
+}
+
+.nav_toggle:hover {
+  cursor: pointer;
+}
+
+
+/* Topへのボタン */
+.toTopButton {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 10%;
+  bottom:10vh;
+  width: 30px;
+  height: 30px;
+  z-index: 9998;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.toTopButton.show {
+  visibility: visible;
+  opacity: 1;
+  width: 30px;
+  height: 30px;
+}
+
+/* ツールチップ */
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip {
+  display: none;
+}
+
+.tooltip-wrapper:hover .tooltip {
+  position: absolute;
+  display: inline;
+  top: 0;
+  right: 100%;
+  background-color: #f0f0f0;
+  border: #333;
+}
+
+
+
+
+@media screen and (max-width : 800px) {
+  /* ナビゲーション */
+  .nav_header {
+    position: absolute;
+    visibility: hidden;
+    overflow: hidden;
+    background-color: #fff;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    padding: 0;
+    opacity: 0;
+  }
+
+  .nav_header ul {
+    text-align: unset;
+    height: 50vh;
+    flex-direction: column;
+    list-style: none;
+  }
+
+
+  .nav_header ul li a {
+    display: block;
+    margin-left: 30px;
+  }
+  
+  .nav_header.show {
+    top: 45px;
+    background-color: white;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.5s, opacity 0.5s;
+  }
+
+  /* ハンバーガーメニュー */
+  .nav_toggle {
+    display: block;
+    position: relative;
+    visibility: visible;
+    top: 8px;
+    left: 6px;
+    background-color: white;
+  }
+
+  .nav_toggle i {
+    display: block;
+    width: 90%;
+    left: 5%;
+    height: 2px;
+    background-color: #333;
+    position: absolute;
+    transition: transform 0.5s, opacity 0.5s;
+  }
+  
+  
+  .nav_toggle i:nth-child(1) {
+    top: calc(20% - 1px);
+  }
+  
+  .nav_toggle i:nth-child(2) {
+    top: calc(50% - 1px);
+    margin: auto;
+  }
+  
+  .nav_toggle i:nth-child(3) {
+    top: calc(80% - 1px);
+  }
+  
+
+  .nav_toggle.show {
+    display: block;
+    position: relative;
+    width: 1.75rem;
+    height: 1.5rem;
+  }
+  
+  .nav_toggle.show i:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+  .nav_toggle.show i:nth-child(2) {
+    opacity: 0;
+  }
+  .nav_toggle.show i:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
+}

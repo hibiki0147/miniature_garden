@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SandGarden</title>
+    <link rel="stylesheet" type="text/css" media="all" href="./css/system.css">
+    <link rel="stylesheet" type="text/css" media="all" href="./css/hello.css">
+    <link rel="icon" href="./favicon.ico">
+    <script src="./js/system.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <script>
+      // ハンバーガーメニューで開いたヘッダーを引っ込める。
+      function header_expalnationLink() {
+        if(window.innerWidth < 800) {
+          if(document.getElementsByClassName("nav_toggle show").length > 0) {
+            toggle_navigation();
+          }
+        }
+      }
+    </script>
+    <header>
+      <div class="nav_toggle">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <nav class="nav_header">
+        <ul>
+          <li>
+            <a href="./index.html">ホーム</a>
+          </li>
+          <li>
+            <a href="./index.html#explanation" onclick="header_expalnationLink()">箱庭とは</a>
+          </li>
+          <!--<li>
+            <a href="#">その他</a>
+          </li>-->
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="toTopButton"></div>
+      <div id="scrollObject" class="section-container">
+        <section class="firstSection">
+          <div class="title-container">
+            <h1 class="title">箱庭</h1>
+          </div>
+          <a href="./php/main.php" class="startButton">スタート</a>
+        </section>
+        <section class="secondSection">
+          <div class="secondSection_column1">
+            <div style="top:50%;">
+              <h2>箱庭とは</h2><a name="explanation"></a>
+              <p>
+                <blockquote cite="https://ja.wikipedia.org/wiki/%E7%AE%B1%E5%BA%AD">
+                  箱庭（はこにわ）は、<span>小さな、あまり深くない箱の中に、</span><span>小さな木や人形のほか、</span><span>橋や船などの景観を構成する様々な要素のミニチュアを配して、</span><span>庭園や名勝など絵画的な光景を模擬的に造り、</span>楽しむものである。
+                <blockquote>
+                <br>
+                <p>by wikipedia</p> 
+              </p>
+            </div>
+          </div>
+          <div class="secondSection_column2"><div></div></div>
+        </section>
+        <section class="thirdSection">
+          <canvas class="playCanvas" width="400" height="400" style="position:absolute; left:50%; top:50%; transform: translateY(-50%) translateX(-50%);
+          -webkit-transform: translateY(-50%) translateX(-50%);"></canvas>
+          <script type="text/javascript">
+            let cnv = document.getElementsByClassName('playCanvas')[0];
+            ctx = cnv.getContext('2d');
+            ctx.strokeStyle = 'rgba(0, 0, 200, 0.5)';
+            let indexArray = [1, 2, 3, 4, 5, 6];
+            
+            // 添え字をランダムにする
+            for(let i = indexArray.length - 1; i >= 0; i--) {
+              let randomNumber = Math.floor(Math.random() * i);
+              [indexArray[i], indexArray[randomNumber]] = [indexArray[randomNumber], indexArray[i]];
+            }
+            // ランダムにした添え字から規則的に円を作り、バラバラに並べる。
+            for(let i = 0; i < indexArray.length; i++) {
+              drawcircle(60 + i * 20, toRadian(indexArray[i] * 60), toRadian(150 + indexArray[i] * 60));
+            }
+            drawcircle(100 + 5 * 20, toRadian(0), toRadian(360));
+
+            function drawcircle(radius, startAngle, endAngle) {
+              ctx.beginPath();
+              ctx.arc(cnv.width / 2, cnv.height / 2, radius, startAngle, endAngle, false);
+              ctx.stroke();
+              ctx.closePath();
+            }
+            function toRadian(value) {
+              return value * Math.PI / 180.0;
+            }
+          </script>
+          <div style="position:absolute; left:50%; top:50%; transform: translateY(-50%) translateX(-50%);
+          -webkit-transform: translateY(-50%) translateX(-50%); background-color:white;">
+            <h2 style="white-space: nowrap">このサイトでの活用</h2>
+            <p>
+              このサイトでは、気軽に遊ぶ感覚で利用してもらえればと思います。<br>
+              <span>自由に表現する楽しさ。</span><span>そこから生まれる気づき。</span>
+              <span>自分自身を見つめ直す機会。</span><span>これらを提供できれば幸いです。</span>
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer>
+    </footer>
+  </body>
+</html>
